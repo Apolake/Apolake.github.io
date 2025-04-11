@@ -21,6 +21,7 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Attach login function globally
   window.login = function() {
     const email = document.getElementById("loginEmail").value;
     const pass = document.getElementById("loginPassword").value;
