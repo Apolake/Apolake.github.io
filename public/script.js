@@ -21,26 +21,41 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-    window.login = function() {
-      const email = document.getElementById("email").value;
-      const pass = document.getElementById("password").value;
-      const game = document.getElementById("game").value;
-  
-      auth.signInWithEmailAndPassword(email, pass).then((cred) => {
-        db.collection("users").doc(cred.user.uid).set({ game: game }, { merge: true });
+  window.login = function() {
+    const email = document.getElementById("loginEmail").value;
+    const pass = document.getElementById("loginPassword").value;
+    const loginError = document.getElementById("loginError");
+
+    auth.signInWithEmailAndPassword(email, pass)
+      .then((cred) => {
         window.location.href = "dashboard.html";
-      }).catch(() => {
-        auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
-          db.collection("users").doc(cred.user.uid).set({
-            role: "user",
-            game: game
-          });
+      })
+      .catch((error) => {
+        loginError.textContent = error.message; // Display error
+      });
+  }
+
+  window.signup = function() {
+    const email = document.getElementById("signupEmail").value;
+    const pass = document.getElementById("signupPassword").value;
+    const game = document.getElementById("signupGame").value;
+    const signupError = document.getElementById("signupError");
+
+    auth.createUserWithEmailAndPassword(email, pass)
+      .then((cred) => {
+        // Store additional user data in Firestore
+        db.collection("users").doc(cred.user.uid).set({
+          role: "user",
+          game: game
+        }).then(() => {
           window.location.href = "dashboard.html";
         });
+      })
+      .catch((error) => {
+        signupError.textContent = error.message; // Display error
       });
-    }
-  });
-  
+  }
+});
 
 function createEvent() {
   const title = document.getElementById("eventTitle").value;
