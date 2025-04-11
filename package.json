@@ -14,11 +14,23 @@
         "@fullcalendar/react": "^6.0.0",
         "@fullcalendar/timegrid": "^6.0.0",
         "firebase": "^11.6.0",
-        "react": "^18.0.0",
-        "react-dom": "^18.0.0",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
         "react-router-dom": "^6.0.0"
     },
     "devDependencies": {
         "gh-pages": "^6.3.0"
-    }
+    },
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Apolake/Apolake.github.io.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Apolake/Apolake.github.io/issues"
+    },
+    "description": ""
 }
