@@ -19,7 +19,7 @@ firebase.auth().onAuthStateChanged((user) => {
     }
   }
 });
-
+function login(){
 document.addEventListener("DOMContentLoaded", () => {
   window.login = function() {
     const email = document.getElementById("loginEmail").value;
@@ -56,6 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 });
+}
+
+function createEventForm() {
+    const eventForm = document.getElementById("eventForm");
+    eventForm.innerHTML = `
+        <h2>Create Event</h2>
+        <input type="text" id="eventTitle" placeholder="Event Title" required>
+        <input type="date" id="eventDate" required>
+        <input type="text" id="eventGame" value="${userGame}" readonly>
+        <button onclick="createEvent()">Create Event</button>
+    `;
+    }
 
 function createEvent() {
   const title = document.getElementById("eventTitle").value;
