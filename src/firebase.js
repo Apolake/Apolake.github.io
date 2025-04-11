@@ -4,12 +4,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyAy-sTGO3159xz__REuakwRkX1n_mwh3jY",
+  authDomain: "otakuwproj.firebaseapp.com",
+  projectId: "otakuwproj",
+  storageBucket: "otakuwproj.firebasestorage.app",
+  messagingSenderId: "1035259366870",
+  appId: "1:1035259366870:web:73eb3a7b1befa20b862877",
+  measurementId: "G-N2B8BRM6L1"
 };
 
 const app = initializeApp(firebaseConfig);

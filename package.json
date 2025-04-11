@@ -1,7 +1,7 @@
 {
     "name": "kbr-hub",
     "version": "1.0.0",
-    "homepage": "https://<username>.github.io/kbr-hub",
+    "homepage": "https://Apolake.github.io/kbr-hub",
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
