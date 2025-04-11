@@ -19,44 +19,64 @@ firebase.auth().onAuthStateChanged((user) => {
     }
   }
 });
-function login(){
 document.addEventListener("DOMContentLoaded", () => {
-  window.login = function() {
-    const email = document.getElementById("loginEmail").value;
-    const pass = document.getElementById("loginPassword").value;
-    const loginError = document.getElementById("loginError");
+    window.login = function() {
+        const email = document.getElementById("loginEmail").value;
+        const pass = document.getElementById("loginPassword").value;
+        const loginError = document.getElementById("loginError");
 
-    auth.signInWithEmailAndPassword(email, pass)
-      .then((cred) => {
-        window.location.href = "dashboard.html";
-      })
-      .catch((error) => {
-        loginError.textContent = error.message; // Display error
-      });
-  }
-
-  window.signup = function() {
-    const email = document.getElementById("signupEmail").value;
-    const pass = document.getElementById("signupPassword").value;
-    const game = document.getElementById("signupGame").value;
-    const signupError = document.getElementById("signupError");
-
-    auth.createUserWithEmailAndPassword(email, pass)
-      .then((cred) => {
-        // Store additional user data in Firestore
-        db.collection("users").doc(cred.user.uid).set({
-          role: "user",
-          game: game
-        }).then(() => {
-          window.location.href = "dashboard.html";
+        auth.signInWithEmailAndPassword(email, pass)
+        .then((cred) => {
+            window.location.href = "dashboard.html";
+        })
+        .catch((error) => {
+            loginError.textContent = error.message; // Display error
         });
-      })
-      .catch((error) => {
-        signupError.textContent = error.message; // Display error
-      });
-  }
+    }
+
+    window.signup = function() {
+        const email = document.getElementById("signupEmail").value;
+        const pass = document.getElementById("signupPassword").value;
+        const game = document.getElementById("signupGame").value;
+        const signupError = document.getElementById("signupError");
+
+        auth.createUserWithEmailAndPassword(email, pass)
+        .then((cred) => {
+            // Store additional user data in Firestore
+            db.collection("users").doc(cred.user.uid).set({
+            role: "user",
+            game: game
+            }).then(() => {
+            window.location.href = "dashboard.html";
+            });
+        })
+        .catch((error) => {
+            signupError.textContent = error.message; // Display error
+        });
+    }
 });
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const eventForm = document.getElementById("eventForm");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            login();
+        });
+    }
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            signup();
+        });
+    }
+
+    if (eventForm) {
+        createEventForm();
+    }
 
 function createEventForm() {
     const eventForm = document.getElementById("eventForm");
