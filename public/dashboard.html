@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>KBR Hub - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="firebase.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to KBR Hub</h1>
+    <div id="eventForm" style="display:none;">
+      <input type="text" id="eventTitle" placeholder="Event Title">
+      <input type="date" id="eventDate">
+      <select id="eventGame">
+        <option value="CS">CS</option>
+        <option value="Valorant">Valorant</option>
+        <option value="League">League</option>
+      </select>
+      <button onclick="createEvent()">Add Event</button>
+    </div>
+
+    <h2>Upcoming Events</h2>
+    <ul id="eventsList"></ul>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+</body>
+</html>
