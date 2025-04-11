@@ -20,24 +20,27 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-function login() {
-  const email = document.getElementById("email").value;
-  const pass = document.getElementById("password").value;
-  const game = document.getElementById("game").value;
-
-  auth.signInWithEmailAndPassword(email, pass).then((cred) => {
-    db.collection("users").doc(cred.user.uid).set({ game: game }, { merge: true });
-    window.location.href = "dashboard.html";
-  }).catch(() => {
-    auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
-      db.collection("users").doc(cred.user.uid).set({
-        role: "user",
-        game: game
+document.addEventListener("DOMContentLoaded", () => {
+    window.login = function() {
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+      const game = document.getElementById("game").value;
+  
+      auth.signInWithEmailAndPassword(email, pass).then((cred) => {
+        db.collection("users").doc(cred.user.uid).set({ game: game }, { merge: true });
+        window.location.href = "dashboard.html";
+      }).catch(() => {
+        auth.createUserWithEmailAndPassword(email, pass).then((cred) => {
+          db.collection("users").doc(cred.user.uid).set({
+            role: "user",
+            game: game
+          });
+          window.location.href = "dashboard.html";
+        });
       });
-      window.location.href = "dashboard.html";
-    });
+    }
   });
-}
+  
 
 function createEvent() {
   const title = document.getElementById("eventTitle").value;
